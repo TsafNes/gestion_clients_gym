@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: gym-backend
+    runtime: python
+    buildCommand: ""
+    startCommand: gunicorn gestion_clients_gym.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: gestion_clients_gym.settings
+      - key: SECRET_KEY
+        value: votre_cle_secrete
+      - key: DEBUG
+        value: "False"
