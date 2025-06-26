@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from '../../components/axiosConfig';
+import axios from '../components/axiosConfig';
 
 interface Client {
   nom: string;

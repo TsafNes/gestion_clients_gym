@@ -1,4 +1,9 @@
 from pathlib import Path
+import pymysql
+import dj_database_url
+import os
+
+pymysql.install_as_MySQLdb()
 
 AUTH_USER_MODEL = 'core.CustomUser'
 
@@ -14,6 +19,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
+    'django.contrib.admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +45,8 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -65,9 +74,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'gym_project.wsgi.application'
 
 # Base de données MySQL
-DATABASES = {
+"""
+ DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+      'ENGINE': 'django.db.backends.mysql',
         'NAME': 'gym_db',
         'USER': 'root',
         'PASSWORD': 'TsafNes.19891989',
@@ -75,6 +85,32 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+ 
+"""
+
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'railway',
+        'USER': 'root',
+        'PASSWORD': 'YKoZwnKnhoiCyFKNpuwhFiXEuctebIdx',
+        'HOST': 'caboose.proxy.rlwy.net',
+        'PORT': '18252',
+    }
+}
+"""
+
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=True
+    )
+}
+
+
 
 # Validation des mots de passe
 AUTH_PASSWORD_VALIDATORS = [
@@ -105,3 +141,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ALLOWED_ORIGINS = [
+    "https://gym-frontend-aeyl.onrender.com",  # à remplacer par l’URL réelle du frontend déployé
+]

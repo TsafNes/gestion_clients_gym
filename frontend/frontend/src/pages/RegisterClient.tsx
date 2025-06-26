@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from '../../components/axiosConfig';
+import axios from '../components/axiosConfig';
 
 
 const RegisterClient: React.FC = () => {

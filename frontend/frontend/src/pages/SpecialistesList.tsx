@@ -1,6 +1,6 @@
 // src/pages/SpecialistesList.tsx
 import React, { useEffect, useState } from 'react';
-import axios from '../../components/axiosConfig';
+import axios from '../components/axiosConfig';
 
 interface Specialiste {
   id: number;

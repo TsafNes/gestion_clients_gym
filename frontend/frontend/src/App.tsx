@@ -3,11 +3,11 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 import RegisterClient from './pages/RegisterClient';
-import RendezVousForm from '../components/RendezVousForm';
-import NotificationsList from '../components/NotificationsList';
-import NotificationBadge from '../components/NotificationBadge';
+import RendezVousForm from './components/RendezVousForm';
+import NotificationsList from './components/NotificationsList';
+import NotificationBadge from './components/NotificationBadge';
 import ClientsList from './pages/ClientsList';
-import Login from '../components/Login';
+import Login from './components/Login';
 import GestionnairesList from './pages/GestionnairesList';
 import SpecialistesList from './pages/SpecialistesList';
 import EditClient from './pages/EditClient';

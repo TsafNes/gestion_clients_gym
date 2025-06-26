@@ -1,6 +1,6 @@
 // src/pages/ClientsList.tsx
 import React, { useEffect, useState } from 'react';
-import axios from '../../components/axiosConfig';
+import axios from '../components/axiosConfig';
 import { Link } from 'react-router-dom';
 
 interface Client {
