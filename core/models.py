@@ -16,6 +16,7 @@ class CustomUser(AbstractUser):
 
 class Abonnement(models.Model):
     type = models.CharField(max_length=45)
+    nom = models.CharField(max_length=100)  # ← CE CHAMP DOIT EXISTER
     duree = models.IntegerField()
     date_debut = models.DateField()
     date_fin = models.DateField()

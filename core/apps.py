@@ -7,12 +7,28 @@ class CoreConfig(AppConfig):
     def ready(self):
         from django.contrib.auth import get_user_model
         from core.models import Abonnement, Gestionnaire, Specialiste
+        from django.utils.timezone import now
+        from datetime import timedelta
         from django.db.utils import OperationalError, ProgrammingError
 
         try:
             # Créer les abonnements
-            for nom in ['Basic', 'Standard', 'Premium']:
-                Abonnement.objects.get_or_create(nom=nom)
+            abonnements = [
+                {"type": "Basic", "duree": 30},
+                {"type": "Standard", "duree": 90},
+                {"type": "Premium", "duree": 180},
+            ]
+            for ab in abonnements:
+                Abonnement.objects.get_or_create(
+                    type=ab["type"],
+                    defaults={
+                        "duree": ab["duree"],
+                        "date_debut": now(),
+                        "date_fin": now() + timedelta(days=ab["duree"]),
+                        "client_id": 1,         # Remplacer avec un ID existant
+                        "specialiste_id": 1     # Idem
+                    }
+                )
 
             # Créer un gestionnaire si aucun n'existe
             User = get_user_model()
@@ -34,5 +50,4 @@ class CoreConfig(AppConfig):
                 Specialiste.objects.create(utilisateur=user_s, specialite='Nutritionniste')
 
         except (OperationalError, ProgrammingError):
-            # Les tables ne sont peut-être pas encore migrées
-            pass
+            pass  # Les tables ne sont peut-être pas encore prêtes
