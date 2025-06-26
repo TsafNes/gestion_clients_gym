@@ -10,7 +10,7 @@ const Login: React.FC = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/auth/token/', {
+      const response = await axios.post('/api/auth/token/', {
         username,
         password
       });
