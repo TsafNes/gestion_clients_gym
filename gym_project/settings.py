@@ -100,7 +100,7 @@ DATABASES = {
 }
 """
 
-
+"""
 DATABASES = {
     'default': dj_database_url.config(
         default=os.getenv('DATABASE_URL'),
@@ -108,7 +108,27 @@ DATABASES = {
         ssl_require=True
     )
 }
+"""
 
+if os.getenv('RENDER') == 'TRUE':
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.getenv('DATABASE_URL'),
+            conn_max_age=600,
+            ssl_require=True
+        )
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'gym_db',
+            'USER': 'root',
+            'PASSWORD': 'TsafNes.19891989',
+            'HOST': 'localhost',
+            'PORT': '3306',
+        }
+    }
 
 
 # Validation des mots de passe
