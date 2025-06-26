@@ -10,10 +10,9 @@ const Login: React.FC = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/auth/token/', {
-        username,
-        password
-      });
+      const instance = axios.create({
+  baseURL: 'https://gestion-gym-backend.onrender.com',
+});
       localStorage.setItem('access', response.data.access);
       localStorage.setItem('refresh', response.data.refresh);
       alert("Connexion réussie !");
